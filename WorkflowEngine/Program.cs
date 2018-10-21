@@ -3,14 +3,15 @@
 namespace WorkflowEngine {
     class Program {
         static void Main (string[] args) {
-            WorkflowEngine workflow = new WorkflowEngine ();
+            Workflow workflow = new Workflow ();
 
-            workflow.RegisterWorkflow (new VideoUploader ());
-            workflow.RegisterWorkflow (new WebServiceCaller ());
-            workflow.RegisterWorkflow (new EmailSender ());
-            workflow.RegisterWorkflow (new StatusChanger ());
+            workflow.Add (new VideoUploader ());
+            workflow.Add (new WebServiceCaller ());
+            workflow.Add (new EmailSender ());
+            workflow.Add (new StatusChanger ());
 
-            workflow.Run ();
+            var engine = new WorkflowEngine ();
+            engine.Run (workflow);
         }
     }
 }
